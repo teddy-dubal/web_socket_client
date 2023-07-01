@@ -5,7 +5,8 @@ void main() async {
   // Create a WebSocket client.
   final uri = Uri.parse('ws://localhost:8080');
   const backoff = ConstantBackoff(Duration(seconds: 1));
-  final socket = WebSocket(uri, backoff: backoff);
+  final socket = WebSocket(uri,
+      backoff: backoff, headers: {'Sec-WebSocket-Protocol': 'wamp'});
 
   // Listen for changes in the connection state.
   socket.connection.listen((state) => print('state: "$state"'));
